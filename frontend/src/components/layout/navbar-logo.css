@@ -1,0 +1,155 @@
+/* navbar-logo.css */
+.srh-logo {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  text-decoration: none;
+  position: relative;
+}
+.srh-logo-badge {
+  width: auto;
+  height: 85px;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), height 0.3s ease;
+}
+.srh-header-scrolled .srh-logo-badge {
+  height: 70px;
+}
+.srh-logo-img {
+  height: 100%;
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  display: block;
+}
+.srh-logo-text-container {
+  position: relative;
+  overflow: hidden;
+  padding: 8px 0;
+  margin-left: -30px;
+}
+.srh-logo-text {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--srh-text);
+  letter-spacing: 1.5px;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(135deg, #1a2e3f 0%, #2c3e50 50%, var(--srh-green) 100%);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite, slideUpFade 1s ease-out;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+  80% {
+    transform: translateY(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+.srh-logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--srh-green), #22c55e, #10b981, var(--srh-green-2));
+  background-size: 300% 100%;
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 0 15px rgba(31, 122, 91, 0.6);
+  animation: gradientMove 3s ease infinite;
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.srh-logo:hover .srh-logo-text {
+  background: linear-gradient(135deg, var(--srh-green) 0%, #2ecc71 50%, var(--srh-green-2) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.08) translateY(-2px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-shadow: 4px 4px 8px rgba(31, 122, 91, 0.3);
+}
+.srh-logo:hover .srh-logo-text::after {
+  width: 100%;
+  box-shadow: 0 0 20px rgba(31, 122, 91, 0.9);
+  height: 4px;
+}
+.srh-logo:hover .srh-logo-badge {
+  transform: scale(1.08) rotate(3deg);
+  filter: drop-shadow(0 10px 15px rgba(31, 122, 91, 0.3));
+}
+.srh-logo-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: left 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  transform: skewX(-20deg);
+}
+.srh-logo:hover .srh-logo-text::before {
+  left: 200%;
+}
+.srh-logo::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(46, 204, 113, 0.25) 0%, transparent 70%);
+  transition: width 0.8s ease, height 0.8s ease, opacity 0.8s ease;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+.srh-logo:hover::after {
+  width: 300px;
+  height: 300px;
+  opacity: 1;
+}
+@keyframes subtlePulse {
+  0% { opacity: 0.9; }
+  50% { opacity: 1; }
+  100% { opacity: 0.9; }
+}
+.srh-logo-text {
+  animation: slideUpFade 1s ease-out, subtlePulse 3s ease-in-out infinite;
+  animation-delay: 0s, 1s;
+}

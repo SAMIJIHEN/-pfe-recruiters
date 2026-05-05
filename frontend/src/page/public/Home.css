@@ -1,0 +1,214 @@
+/* Home.css - Styles du footer uniquement */
+/* ═══════════════════════════════════════════════════════════════ */
+/* ✅ À CONSERVER - Styles essentiels pour le footer */
+/* ═══════════════════════════════════════════════════════════════ */
+
+.f-inner {
+  width: 100%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: #fff;
+  padding: 60px 0 50px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 -20px 40px -20px rgba(0,0,0,0.6);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.f-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.f-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px;
+}
+
+.f-brand-col { max-width: 400px; }
+
+.f-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.f-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 20px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 30px -10px rgba(0,0,0,0.3);
+}
+
+.f-name {
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: -0.5px;
+  background: linear-gradient(to right, #fff, #e2e8f0);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.f-tag {
+  font-size: 14px;
+  opacity: 0.7;
+  margin-top: 4px;
+  color: #94a3b8;
+}
+
+.f-desc {
+  margin: 20px 0 25px;
+  opacity: 0.8;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+
+.f-social { 
+  display: flex; 
+  gap: 15px; 
+}
+
+.f-social-link {
+  width: 40px; 
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  color: #94a3b8;
+  transition: all 0.2s ease;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.f-social-link:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #10b981;
+  transform: translateY(-2px);
+}
+
+.f-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 25px;
+  color: #10b981;
+  text-transform: uppercase;
+}
+
+.f-link {
+  display: block;
+  text-decoration: none;
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 15px;
+  margin: 16px 0;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+  position: relative;
+  width: fit-content;
+}
+
+.f-link:hover {
+  opacity: 1;
+  color: #fff;
+  transform: translateX(5px);
+}
+
+.f-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(to right, #10b981, #34d399);
+  transition: width 0.2s ease;
+}
+
+.f-link:hover::after { 
+  width: 100%; 
+}
+
+.f-bottom {
+  max-width: 1300px;
+  margin: 50px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.f-bottomLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.f-bottomLink {
+  color: #94a3b8;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.f-bottomLink:hover { 
+  opacity: 1; 
+  color: #10b981; 
+}
+
+@media (max-width: 1000px) {
+  .f-content { 
+    padding: 0 30px; 
+  }
+  .f-grid { 
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 30px; 
+  }
+  .f-grid > div:first-child { 
+    grid-column: 1 / -1; 
+    max-width: 100%; 
+  }
+}
+
+@media (max-width: 700px) {
+  .f-inner { 
+    padding: 60px 0 35px; 
+  }
+  .f-content { 
+    padding: 0 20px; 
+  }
+  .f-grid { 
+    grid-template-columns: 1fr; 
+    gap: 30px; 
+  }
+  .f-bottom { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 15px; 
+  }
+  .f-bottomLinks { 
+    gap: 20px; 
+  }
+}

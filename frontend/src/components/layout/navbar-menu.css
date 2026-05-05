@@ -1,0 +1,92 @@
+/* navbar-menu.css */
+.srh-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.srh-menubtn {
+  border: 0;
+  background: transparent;
+  padding: 12px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 800;
+  color: var(--srh-text);
+  opacity: .9;
+  transition: all 0.2s;
+  font-size: 16px;
+  text-decoration: none;
+}
+.srh-menubtn:hover {
+  background: rgba(22,163,74,.10);
+  color: var(--srh-green);
+}
+.srh-menubtn.is-open {
+  background: rgba(22,163,74,.14);
+  color: var(--srh-green);
+}
+.srh-menubtn.is-active {
+  color: var(--srh-green);
+  font-weight: 900;
+  position: relative;
+}
+.srh-menubtn.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background: var(--srh-green);
+  border-radius: 3px;
+}
+.srh-caret {
+  margin-left: 6px;
+  opacity: .75;
+  font-size: 14px;
+}
+.srh-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+}
+.srh-login {
+  text-decoration: none;
+  color: var(--srh-text);
+  font-weight: 800;
+  transition: color 0.2s;
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.srh-login:hover {
+  color: var(--srh-green);
+  background: rgba(22,163,74,.05);
+}
+.srh-login.is-active {
+  color: var(--srh-green);
+  font-weight: 900;
+  background: rgba(22,163,74,.1);
+}
+.srh-cta {
+  background: var(--srh-green) !important;
+  color: #fff !important;
+  text-decoration: none;
+  font-weight: 900;
+  padding: 14px 20px;
+  border-radius: 14px;
+  box-shadow: 0 16px 28px rgba(22,163,74,.22);
+  transition: all 0.2s;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.srh-cta:hover {
+  background: var(--srh-green-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 20px 32px rgba(22,163,74,.3);
+}

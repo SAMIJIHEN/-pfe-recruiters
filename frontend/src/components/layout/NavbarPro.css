@@ -1,0 +1,8 @@
+/* frontend/src/components/layout/NavbarPro.css */
+@import url('./navbar-variables.css');
+@import url('./navbar-layout.css');
+@import url('./navbar-logo.css');
+@import url('./navbar-menu.css');
+@import url('./navbar-logout.css');
+@import url('./navbar-mega.css');
+@import url('./navbar-responsive.css');

@@ -1,0 +1,12 @@
+/* navbar-variables.css */
+:root {
+  --srh-green: #10B981;
+  --srh-green-hover: #0EA371;
+  --srh-bg: #ffffff;
+  --srh-text: #0f172a;
+  --srh-muted: #64748b;
+  --srh-border: rgba(15,23,42,.12);
+  --srh-shadow: 0 20px 50px rgba(15,23,42,.10);
+  --srh-red: #ef4444;
+  --srh-red-hover: #dc2626;
+}
