@@ -116,7 +116,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # ============================================================================
 # CONFIGURATION CORS / CSRF
 # ============================================================================
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
+def ensure_scheme(url):
+    """S'assure que l'URL commence par https:// ou http://"""
+    if url and not url.startswith(("http://", "https://")):
+        return "https://" + url
+    return url
+
+FRONTEND_URL = ensure_scheme(os.getenv("FRONTEND_URL", "http://localhost:5173"))
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -125,7 +131,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
-    FRONTEND_URL,  # ✅ URL Railway frontend automatique
+    FRONTEND_URL,
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -135,7 +141,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
-    FRONTEND_URL,  # ✅ URL Railway frontend automatique
+    FRONTEND_URL,
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -189,7 +195,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
 
 SESSION_COOKIE_SAMESITE = None
 SESSION_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = os.getenv("DEBUG", "False") != "True"  # ✅ True en production
+SESSION_COOKIE_SECURE = os.getenv("DEBUG", "False") != "True"
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
