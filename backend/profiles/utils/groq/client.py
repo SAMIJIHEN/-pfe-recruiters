@@ -1,13 +1,6 @@
 # profiles/utils/groq/client.py
 import os
 import requests
-from pathlib import Path
-from dotenv import load_dotenv
-
-# Charger le .env
-BACKEND_DIR = Path(__file__).resolve().parents[3]
-ENV_PATH = BACKEND_DIR / ".env"
-load_dotenv(ENV_PATH, override=True)
 
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 MODEL_ID = "llama-3.3-70b-versatile"
