@@ -1,25 +1,14 @@
 # backend/config/settings.py
-# ═══════════════════════════════════════════════════════════════
-# ✅ CONFIGURATION DJANGO COMPLÈTE
-# ✅ MODIFIÉ POUR RAILWAY (PostgreSQL, WhiteNoise, CORS)
-# ═══════════════════════════════════════════════════════════════
-
 from pathlib import Path
 import os
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# ============================================================================
-# CONFIGURATION GÉNÉRALE
-# ============================================================================
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-votre-cle-secrete-ici")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = ['*']
 
-# ============================================================================
-# APPLICATIONS INSTALLÉES
-# ============================================================================
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -36,9 +25,6 @@ INSTALLED_APPS = [
     "applications",
 ]
 
-# ============================================================================
-# MIDDLEWARE
-# ============================================================================
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -52,9 +38,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
-# ============================================================================
-# TEMPLATES
-# ============================================================================
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -73,16 +56,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# ============================================================================
-# BASE DE DONNÉES
-# ============================================================================
 DATABASES = {
     'default': dj_database_url.config(default='sqlite:///db.sqlite3', conn_max_age=600)
 }
 
-# ============================================================================
-# VALIDATION DES MOTS DE PASSE
-# ============================================================================
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -90,24 +67,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# ============================================================================
-# INTERNATIONALISATION
-# ============================================================================
 LANGUAGE_CODE = "fr-fr"
 TIME_ZONE = "Africa/Tunis"
 USE_I18N = True
 USE_TZ = True
 
-# ============================================================================
-# FICHIERS STATIQUES
-# ============================================================================
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# ============================================================================
-# FICHIERS MEDIA
-# ============================================================================
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -117,12 +85,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CONFIGURATION CORS / CSRF
 # ============================================================================
 def ensure_scheme(url):
-    """S'assure que l'URL commence par https:// ou http://"""
     if url and not url.startswith(("http://", "https://")):
         return "https://" + url
     return url
 
 FRONTEND_URL = ensure_scheme(os.getenv("FRONTEND_URL", "http://localhost:5173"))
+BACKEND_URL = "https://pfe-recruiters-production.up.railway.app"  # ✅ URL backend fixe
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
@@ -132,6 +100,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
     FRONTEND_URL,
+    BACKEND_URL,  # ✅ Ajouté
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -142,6 +111,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
     FRONTEND_URL,
+    BACKEND_URL,  # ✅ Ajouté
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -166,9 +136,6 @@ CORS_ALLOW_HEADERS = [
     "x-user-lastname",
 ]
 
-# ============================================================================
-# CONFIGURATION REST FRAMEWORK
-# ============================================================================
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
@@ -181,9 +148,6 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 10,
 }
 
-# ============================================================================
-# CONFIGURATION EMAIL
-# ============================================================================
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = os.getenv("EMAIL_HOST", "smtp.gmail.com")
 EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
@@ -202,14 +166,8 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", f"AJ Recruiters <{EMAIL_HOST_USER}>")
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
-# ============================================================================
-# CONFIGURATION GROQ API
-# ============================================================================
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
-# ============================================================================
-# CONFIGURATION DES LOGS
-# ============================================================================
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
