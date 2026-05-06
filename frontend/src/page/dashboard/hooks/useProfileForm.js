@@ -37,7 +37,7 @@ export function useProfileForm() {
 
   // Axios instances
   const api = axios.create({
-    baseURL: "http://localhost:8000/api",
+    baseURL: "https://pfe-recruiters-production.up.railway.app/api",
     headers: {
       "Content-Type": "application/json",
       "X-Clerk-User-Id": user?.id || "",
@@ -48,7 +48,7 @@ export function useProfileForm() {
   });
 
   const uploadApi = axios.create({
-    baseURL: "http://localhost:8000/api",
+    baseURL: "https://pfe-recruiters-production.up.railway.app/api",
     headers: {
       "Content-Type": "multipart/form-data",
       "X-Clerk-User-Id": user?.id || "",
@@ -83,7 +83,7 @@ export function useProfileForm() {
           if (profile.photo) {
             const photoUrl = profile.photo.startsWith("http")
               ? profile.photo
-              : `http://localhost:8000${profile.photo}`;
+              : `https://pfe-recruiters-production.up.railway.app${profile.photo}`;
             setPhoto(photoUrl);
             setPhotoPreview(photoUrl);
           }
@@ -257,13 +257,11 @@ export function useProfileForm() {
       ...prev,
       phone: prev.phone || pendingCvData.phone || "",
       location: prev.location || pendingCvData.location || "",
-      // ✅ Le titre vient de headline ou title
       title: prev.title || pendingCvData.headline || pendingCvData.title || "",
       skills: prev.skills?.length > 0 ? prev.skills : (Array.isArray(pendingCvData.skills) ? pendingCvData.skills : []),
       linkedin: prev.linkedin || pendingCvData.linkedin || "",
       github: prev.github || pendingCvData.github || "",
       portfolio: prev.portfolio || pendingCvData.portfolio || "",
-      // ✅ La bio vient de summary ou bio (PAS le titre)
       bio: prev.bio || pendingCvData.summary || pendingCvData.bio || "",
     }));
     

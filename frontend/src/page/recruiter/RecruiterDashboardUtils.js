@@ -26,7 +26,7 @@ export const EXPERIENCE_LABELS = {
   "10+":  "+ 10 ans",
 };
 
-export const BASE_URL = "http://127.0.0.1:8000";
+export const BASE_URL = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://127.0.0.1:8080";
 export const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
 // ==================== HELPERS ====================

@@ -147,10 +147,10 @@ export function useDashboardData() {
     applications.some((a) => a.job === jobId || a.job_details?.id === jobId);
 
   const getPhotoUrl = () => {
-    if (!profile?.photo) return null;
-    return `http://127.0.0.1:8000/media/photos/${profile.photo.split('/').pop()}`;
-  };
-
+  if (!profile?.photo) return null;
+  const base = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://127.0.0.1:8080";
+  return `${base}/media/photos/${profile.photo.split('/').pop()}`;
+};
   const calculateCompletion = () => {
     if (!profile) return 0;
     const fields = [
