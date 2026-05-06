@@ -99,8 +99,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
-    FRONTEND_URL,
-    BACKEND_URL,  # ✅ Ajouté
+    "https://comfortable-fulfillment-production-bb3e.up.railway.app",
+    "https://pfe-recruiters-production.up.railway.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -113,7 +113,7 @@ CSRF_TRUSTED_ORIGINS = [
     FRONTEND_URL,
     BACKEND_URL,  # ✅ Ajouté
 ]
-
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = [
