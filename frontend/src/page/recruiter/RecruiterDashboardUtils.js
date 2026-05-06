@@ -29,6 +29,7 @@ export const EXPERIENCE_LABELS = {
 export const BASE_URL = import.meta.env.VITE_API_URL?.replace("/api", "") || "http://127.0.0.1:8080";
 export const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 
+
 // ==================== HELPERS ====================
 export function getScoreColor(score) {
   if (score >= 80) return { bar: "bg-emerald-500", text: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200", label: "Excellent" };
