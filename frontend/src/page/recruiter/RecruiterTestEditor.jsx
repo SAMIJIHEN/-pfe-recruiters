@@ -717,7 +717,7 @@ const RecruiterTestEditor = ({
         totalTime: questions.reduce((acc, q) => acc + (q.estimatedTime || 0), 0),
       };
 
-      await api.post(`/applications/${applicationId}/send-test-invitation/`, payload);
+     await api.post(`/applications/${applicationId}/send-test-invitation/`, payload, { timeout: 120000 });
       alert(`✅ Test envoyé au candidat (${questions.length} questions).`);
       if (onSend) onSend();
       if (onClose) onClose();
