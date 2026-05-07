@@ -1,5 +1,6 @@
 // frontend/src/components/common/NotificationBell.jsx
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { BellIcon } from "@heroicons/react/24/outline";
 import { motion, AnimatePresence } from "framer-motion";
 import { getNotifications, markNotificationAsRead } from "../../services/api";
@@ -12,13 +13,12 @@ export default function NotificationBell() {
   const [loading, setLoading] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Charger les notifications
   const fetchNotifications = async () => {
     setLoading(true);
     try {
       const response = await getNotifications();
-      // ✅ Correction : extraire le tableau des résultats (pagination DRF)
       let data = response.data;
       if (data && typeof data === 'object' && !Array.isArray(data)) {
         data = data.results || [];
@@ -33,15 +33,12 @@ export default function NotificationBell() {
     }
   };
 
-  // Charger au montage
   useEffect(() => {
     fetchNotifications();
-    // Rafraîchir toutes les 30 secondes
     const interval = setInterval(fetchNotifications, 30000);
     return () => clearInterval(interval);
   }, []);
 
-  // Fermer le dropdown en cliquant à l'extérieur
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -52,20 +49,24 @@ export default function NotificationBell() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Marquer une notification comme lue
-  const handleMarkAsRead = async (id) => {
+  const handleNotificationClick = async (notif) => {
     try {
-      await markNotificationAsRead(id);
-      setNotifications(prev =>
-        prev.map(n => (n.id === id ? { ...n, is_read: true } : n))
-      );
-      setUnreadCount(prev => Math.max(0, prev - 1));
+      if (!notif.is_read) {
+        await markNotificationAsRead(notif.id);
+        setNotifications(prev =>
+          prev.map(n => (n.id === notif.id ? { ...n, is_read: true } : n))
+        );
+        setUnreadCount(prev => Math.max(0, prev - 1));
+      }
+      if (notif.link) {
+        navigate(notif.link);
+        setIsOpen(false);
+      }
     } catch (error) {
-      console.error("Erreur marquage notification:", error);
+      console.error("Erreur notification:", error);
     }
   };
 
-  // Marquer toutes comme lues
   const markAllAsRead = async () => {
     const unreadIds = notifications.filter(n => !n.is_read).map(n => n.id);
     for (const id of unreadIds) {
@@ -90,7 +91,6 @@ export default function NotificationBell() {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Bouton cloche */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative p-2 rounded-full hover:bg-gray-100 transition-colors"
@@ -104,7 +104,6 @@ export default function NotificationBell() {
         )}
       </button>
 
-      {/* Dropdown des notifications */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -114,7 +113,6 @@ export default function NotificationBell() {
             transition={{ duration: 0.2 }}
             className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-xl shadow-xl border border-gray-200 z-50 overflow-hidden"
           >
-            {/* En-tête */}
             <div className="flex justify-between items-center px-4 py-3 border-b border-gray-100 bg-gray-50">
               <h3 className="font-semibold text-gray-800">Notifications</h3>
               {unreadCount > 0 && (
@@ -127,7 +125,6 @@ export default function NotificationBell() {
               )}
             </div>
 
-            {/* Liste des notifications */}
             <div className="max-h-96 overflow-y-auto">
               {loading && notifications.length === 0 ? (
                 <div className="p-4 text-center text-gray-500">
@@ -146,7 +143,7 @@ export default function NotificationBell() {
                     className={`p-4 border-b border-gray-100 hover:bg-gray-50 transition cursor-pointer ${
                       !notif.is_read ? "bg-emerald-50/30" : ""
                     }`}
-                    onClick={() => handleMarkAsRead(notif.id)}
+                    onClick={() => handleNotificationClick(notif)}
                   >
                     <div className="flex justify-between items-start gap-2">
                       <div className="flex-1">
@@ -167,7 +164,6 @@ export default function NotificationBell() {
               )}
             </div>
 
-            {/* Pied de page */}
             <div className="px-4 py-2 border-t border-gray-100 bg-gray-50 text-center">
               <button
                 onClick={() => setIsOpen(false)}
