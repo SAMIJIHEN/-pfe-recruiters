@@ -423,7 +423,7 @@ Réponds UNIQUEMENT avec un JSON valide (sans markdown, sans backticks) dans ce 
               </div>
             </div>
           </motion.div>
-
+<BackButton fallbackPath="/recruiter/job-offers" className="mb-6" />
           {/* MESSAGES */}
           <AnimatePresence>
             {error && (

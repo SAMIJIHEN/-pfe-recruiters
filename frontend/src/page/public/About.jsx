@@ -1,6 +1,6 @@
 import NavbarPro from "../../components/layout/NavbarPro"; // ✅ change le chemin/nom si besoin
 import HomeFooter from "./home/HomeFooter"; // ✅ optionnel (si tu veux aussi le footer)
-
+<BackButton fallbackPath="/" className="mb-6" />
 export default function About() {
   return (
     <div className="min-h-screen">

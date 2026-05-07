@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NavbarPro from "../../components/layout/NavbarPro"; // adapte si besoin
 import HomeFooter from "./home/HomeFooter"; // adapte si besoin
-
+<BackButton fallbackPath="/" className="mb-6" />
 export default function Contact() {
   const [status, setStatus] = useState("");
 

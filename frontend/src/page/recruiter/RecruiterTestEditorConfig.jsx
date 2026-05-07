@@ -16,7 +16,7 @@ export const experienceLevels = [
   { value: "5-10", label: "5 à 10 ans", icon: "⭐" },
   { value: "10+", label: "Plus de 10 ans", icon: "🏆" },
 ];
-
+<BackButton fallbackPath="/recruiter-dashboard" className="mb-4" />
 export function TestConfigScreen({
   config,
   setConfig,

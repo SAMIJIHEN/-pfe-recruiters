@@ -64,7 +64,7 @@ function StatCard({ title, value, icon: Icon, color }) {
     </motion.div>
   );
 }
-
+<BackButton fallbackPath="/" label="Retour à l'accueil" className="mt-6" />
 // ============================================================
 // COMPOSANT CARTE RECRUTEUR
 // ============================================================
