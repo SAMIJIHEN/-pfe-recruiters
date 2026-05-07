@@ -20,7 +20,7 @@ import {
   GlobeAltIcon,
   ChevronDownIcon,
   ChevronUpIcon,
-  ArrowLeftIcon,
+  ArrowLeftIcon, // ✅ Import ajouté
 } from "@heroicons/react/24/outline";
 
 import logoSite from "../../components/layout/AJ.png";
@@ -411,7 +411,6 @@ export default function AdminDashboard() {
   <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-900 shadow-xl">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        {/* Partie gauche : logo, titre et bouton Retour */}
         <div className="flex items-center gap-5">
           <div className="relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-emerald-600 rounded-xl blur opacity-30" />
@@ -427,6 +426,10 @@ export default function AdminDashboard() {
             <h1 className="text-2xl font-bold text-white tracking-tight">Administration</h1>
             <p className="text-emerald-100 text-sm">Gestion des comptes recruteurs</p>
           </div>
+        </div>
+
+        {/* Boutons Retour + Déconnexion */}
+        <div className="flex items-center gap-3">
           <button
             onClick={() => navigate("/")}
             className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white hover:bg-white/20 transition flex items-center gap-2"
@@ -434,10 +437,6 @@ export default function AdminDashboard() {
             <ArrowLeftIcon className="w-4 h-4" />
             Retour
           </button>
-        </div>
-
-        {/* Partie droite : bouton Déconnexion */}
-        <div className="flex items-center gap-3">
           <button
             onClick={handleLogout}
             className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white hover:bg-white/20 transition flex items-center gap-2"
