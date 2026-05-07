@@ -68,7 +68,7 @@ function ScoreBadge({ score }) {
     if (score >= 40) return "bg-amber-500";
     return "bg-red-500";
   };
-  <BackButton fallbackPath="/recruiter-dashboard" className="mb-6" />
+  
   const getLabel = () => {
     if (score >= 80) return "Excellent";
     if (score >= 60) return "Très bien";
