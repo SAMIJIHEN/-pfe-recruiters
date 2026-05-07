@@ -22,7 +22,6 @@ import {
   ChevronUpIcon,
 } from "@heroicons/react/24/outline";
 
-import NavbarPro from "../../components/layout/NavbarPro";
 import logoSite from "../../components/layout/AJ.png";
 
 import {
@@ -405,7 +404,7 @@ export default function AdminDashboard() {
 
   return (
     <>
-      <NavbarPro />
+    
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-emerald-50 pt-20">
         {/* Header avec logo GRAND */}
         <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-900 shadow-xl">
